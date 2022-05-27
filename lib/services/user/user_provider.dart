@@ -3,12 +3,15 @@ part of '../services.dart';
 class UserProvider {
   Future<http.Response> login(String email, String password) async {
     http.Client client = http.Client();
+
+    String body = jsonEncode({
+      "email": email,
+      "password": password,
+    });
+
     http.Response res = await client.post(
       Uri.parse("$baseUrl/users/login"),
-      body: {
-        "email": email,
-        "password": password,
-      },
+      body: body,
       headers: {
         "Content-Type": "application/json",
       },
