@@ -9,7 +9,7 @@ class ProductProvider {
     String token = await User.getToken() ?? "";
 
     http.Response res =
-        await httpClient.get(Uri.parse("$BASE_URL/products"), headers: {
+        await httpClient.get(Uri.parse("$baseUrl/products"), headers: {
       "Authorization": "Bearer $token",
     });
     return res;

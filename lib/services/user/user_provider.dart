@@ -4,7 +4,7 @@ class UserProvider {
   Future<http.Response> login(String email, String password) async {
     http.Client client = http.Client();
     http.Response res = await client.post(
-      Uri.parse("$BASE_URL/users/login"),
+      Uri.parse("$baseUrl/users/login"),
       body: {
         "email": email,
         "password": password,
@@ -30,7 +30,7 @@ class UserProvider {
         await http.MultipartFile.fromPath("profile", file.path);
 
     http.MultipartRequest request =
-        http.MultipartRequest("POST", Uri.parse("$BASE_URL/users/register"))
+        http.MultipartRequest("POST", Uri.parse("$baseUrl/users/register"))
           ..fields.addAll(stringData)
           ..files.add(multipartFile);
 
@@ -58,7 +58,7 @@ class UserProvider {
     };
 
     http.MultipartRequest request = http.MultipartRequest(
-        "POST", Uri.parse('$BASE_URL/users/profile?_method=PATCH'))
+        "POST", Uri.parse('$baseUrl/users/profile?_method=PATCH'))
       ..fields.addAll(stringData);
 
     if (file != null) {
@@ -77,7 +77,7 @@ class UserProvider {
   Future<http.Response> profile(String token) async {
     http.Client client = http.Client();
     http.Response res = await client.get(
-      Uri.parse("$BASE_URL/users/profile"),
+      Uri.parse("$baseUrl/users/profile"),
       headers: {
         'Authorization': "Bearer $token",
       },
